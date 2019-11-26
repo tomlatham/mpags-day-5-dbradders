@@ -1,7 +1,9 @@
 #ifndef MPAGSCIPHER_VIGENERECIPHER_HPP
 #define MPAGSCIPHER_VIGENERECIPHER_HPP
 
+#include <map>
 #include <string>
+#include "CaesarCipher.hpp"
 #include "CipherMode.hpp"
 #include "PlayfairCipher.hpp"
 
@@ -19,8 +21,11 @@ public:
 
 private:
 
+  // The cipher key
   std::string key_;
 
+  // Lookup table
+  std::map<char, CaesarCipher> charLookup_;
 };
 
 #endif
