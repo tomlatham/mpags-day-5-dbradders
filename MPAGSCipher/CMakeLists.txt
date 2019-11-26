@@ -13,6 +13,8 @@ add_library(MPAGSCipher STATIC
   ProcessCommandLine.cpp
   TransformChar.hpp
   TransformChar.cpp
+  VigenereCipher.hpp
+  VignenerCipher.hpp
   )
 
 target_include_directories(MPAGSCipher
