@@ -1,4 +1,5 @@
 #include <string>
+#include <algorithm>
 #include "VigenereCipher.hpp"
 #include "Alphabet.hpp"
 #include "CaesarCipher.hpp"
