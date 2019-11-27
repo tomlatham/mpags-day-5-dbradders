@@ -14,7 +14,7 @@ add_library(MPAGSCipher STATIC
   TransformChar.hpp
   TransformChar.cpp
   VigenereCipher.hpp
-  VignenerCipher.hpp
+  VigenereCipher.hpp
   )
 
 target_include_directories(MPAGSCipher

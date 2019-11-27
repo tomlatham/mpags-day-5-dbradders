@@ -117,9 +117,9 @@ int main(int argc, char* argv[])
 	outputText = cipher.applyCipher( inputText, settings.cipherMode );
 	break;
       }
-  case CipherType::Vinegere :
+  case CipherType::Vigenere :
     {
-      VinegereCipher cipher { settings.cipherKey };
+      VigenereCipher cipher { settings.cipherKey };
       outputText = cipher.applyCipher( inputText, settings.cipherMode );
       break;
     }
