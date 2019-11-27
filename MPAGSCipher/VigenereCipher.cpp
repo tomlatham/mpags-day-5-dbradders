@@ -42,10 +42,36 @@ VigenereCipher::VigenereCipher(const std::string& key)
   setKey(key);
 }
 
-std::string VignenereCipher::applyCipher(const std::string& inputText,
+std::string VigenereCipher::applyCipher(const std::string& inputText,
 					 const CipherMode /*cipherMode*/) const
 {
-  return inputText;
+  std::string outputText;
+  key_ = key;
+  // For each letter in input:
+  for (std::string::size_type i{0}; i<inputText.size(); ++i){
+
+  // Find the corresponding letter in the key,
+  // repeating/truncating as required
+    char keyLetter = key_[i % key_.size()];
+
+  // Find the Caesar cipher from lookup
+    auto cipherIter = charLookup_.find(keyLetter);
+    CaesarCipher cipher = cipherIter->second;
+
+  // Run the (de)encryption
+    switch (CipherMode){
+    case CipherMode::Encrypt:
+      outputText += cipher.applyCipher(inputText[i], CipherMode::Encrypt);
+      break;
+    case CipherMode::Decrypt:
+      outputText += cipher.applyCipher(inputText[i], CipherMode::Decrypt);
+      break;
+    }
+  }
+    
+  // Add the result to the output
+  
+  return outputText;
 }
 
   
