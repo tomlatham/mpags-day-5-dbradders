@@ -6,9 +6,10 @@
 #include "CaesarCipher.hpp"
 #include "CipherMode.hpp"
 #include "PlayfairCipher.hpp"
+#include "Cipher.hpp"
 
 
-class VigenereCipher{
+class VigenereCipher : public Cipher {
 
 public:
   
@@ -17,7 +18,7 @@ public:
   void setKey(const std::string& key);
 
   std::string applyCipher(const std::string& inputText,
-			  const CipherMode cipherMode) const;
+			  const CipherMode cipherMode) const override;
 
 private:
 
