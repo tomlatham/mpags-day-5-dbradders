@@ -23,4 +23,5 @@ target_include_directories(MPAGSCipher
   )
 target_compile_features(MPAGSCipher
   PUBLIC cxx_auto_type cxx_range_for cxx_uniform_initialization
+  cxx_std_14
   )
