@@ -6,9 +6,18 @@
 #include "Cipher.hpp"
 #include "CipherType.hpp"
 
-// enum class CipherType{Caesar, Playfair, Vigenere};
-// can comment out since in hpp file
+/**
+ * \file CipherFactory.hpp
+ * \brief Contains the declaration of the factory function for creating Cipher objects
+ */
 
+/**
+ * \brief Create a Cipher object of the concrete type specified, constructed from the supplied key
+ *
+ * \param cipherType the concrete type of of cipher to be constructed
+ * \param key the key with which to construct the cipher
+ * \return the newly constructed cipher
+ */
 std::unique_ptr<Cipher> cipherFactory(const CipherType cipherType,
 				      const std::string& key);
 
