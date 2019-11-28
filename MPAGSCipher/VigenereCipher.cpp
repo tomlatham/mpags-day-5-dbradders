@@ -29,7 +29,7 @@ void VigenereCipher::setKey(const std::string& key)
    auto letterPos = Alphabet::alphabet.find(key_[i]);
 
   // Create a CaesarCipher using this position as a key
-   CaesarCipher caesarCipher = CaesarCipher(letterPos);
+   CaesarCipher caesarCipher { letterPos };
 
   // Insert a std::pair of the letter and CaesarCipher into the lookup
    charLookup_.insert(std::make_pair(key_[i], caesarCipher));
@@ -43,10 +43,10 @@ VigenereCipher::VigenereCipher(const std::string& key)
 }
 
 std::string VigenereCipher::applyCipher(const std::string& inputText,
-					 const CipherMode /*cipherMode*/) const
+					 const CipherMode cipherMode) const
 {
   std::string outputText;
-  key_ = key;
+
   // For each letter in input:
   for (std::string::size_type i{0}; i<inputText.size(); ++i){
 
@@ -55,18 +55,10 @@ std::string VigenereCipher::applyCipher(const std::string& inputText,
     char keyLetter = key_[i % key_.size()];
 
   // Find the Caesar cipher from lookup
-    auto cipherIter = charLookup_.find(keyLetter);
-    CaesarCipher cipher = cipherIter->second;
+    const CaesarCipher& cipher { charLookup_.at(keyLetter) };
 
   // Run the (de)encryption
-    switch (CipherMode){
-    case CipherMode::Encrypt:
-      outputText += cipher.applyCipher(inputText[i], CipherMode::Encrypt);
-      break;
-    case CipherMode::Decrypt:
-      outputText += cipher.applyCipher(inputText[i], CipherMode::Decrypt);
-      break;
-    }
+    outputText += cipher.applyCipher( std::string{inputText[i]}, cipherMode);
   }
     
   // Add the result to the output
